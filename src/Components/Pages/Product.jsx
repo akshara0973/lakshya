@@ -2,152 +2,165 @@ import React, { useState } from "react";
 
 export default function FeaturedProducts() {
   const products = [
-    {
-      src: "/img/rangoli.jpeg",
-      title: "Rangoli Design",
-      // price: "Rs 78",
-    },
-    {
-      src: "/img/p12.jpeg",
-      title: "Shawl",
-      // price: "Rs 200",
-    },
-    {
-      src: "/img/4h.jpg",
-      title: "Handmade Bags",
-      // price: "Rs 30",
-    },
-    {
-      src: "/img/p7.jpeg",
-      title: "Scented Candle",
-      // price: "Rs 90",
-    },
-    {
-      src: "/img/c4.jpeg",
-      title: "Mop",
-      // price: "Rs 20",
-    },
-    {
-      src: "/img/c5.jpeg",
-      title: "Piggy Bank",
-      // price: "Rs 15",
-    },
-    {
-      src: "/img/p8.jpeg",
-      title: "Jewellery Box",
-      // price: "Rs 200",
-    },
-    {
-      src: "/img/p13.jpeg",
-      title: "Turmeric",
-      // price: "Rs 120",
-    },
-    {
-      src: "/img/pur.jpg",
-      title: "Purse",
-      // price: "Rs 120",
-    },
-    {
-      src: "/img/C100.jpg",
-      title: "Pottery",
-      // price: "Rs 120",
-    },
-    {
-      src: "/img/p6.jpeg",
-      title: "Gel Diya",
-      // price: "Rs 120",
-    },
-    {
-      src: "/img/p9.jpg",
-      title: "Ladies Shawl",
-      // price: "Rs 120",
-    },
+    { src: "/img/doormat.jpg", title: "Doormat", note:"Inviting" },
+    { src: "/img/p12.jpeg", title: "Shawl", note:"Luxurious" },
+    { src: "/img/4h.jpg", title: "Handmade Bags",note:"Artisanal" },
+    { src: "/img/p7.jpeg", title: "Scented Candle",note:"Aromatherapy" },
+    { src: "/img/pickle.jpeg", title: "Pickle",note:"Zesty" },
+    { src: "/img/c5.jpeg", title: "Piggy Bank",note:"Charming" },
+    { src: "/img/p8.jpeg", title: "Jewellery Box",note:"Elegant" },
+    { src: "/img/p13.jpeg", title: "Turmeric",note:"Golden" },
+    { src: "/img/pur.jpg", title: "Purse",note:"Trendy" },
+    { src: "/img/C100.jpg", title: "Pottery",note:"Exquisite" },
+    { src: "/img/p6.jpeg", title: "Gel Diya" ,note:"Enchanting"},
+    { src: "/img/p9.jpg", title: "Ladies Shawl",note:"Charming" },
   ];
 
-  // State to track favorite status for each product
-  const [favorites, setFavorites] = useState(Array(products.length).fill(false));
+  const [flipped, setFlipped] = useState(Array(products.length).fill(false));
 
-  const toggleFavorite = (index) => {
-    const newFavorites = [...favorites];
-    newFavorites[index] = !newFavorites[index];
-    setFavorites(newFavorites);
-  };
-
-  const styles = {
-    section: {
-      padding: "20px",
-      textAlign: "center",
-    },
-    container: {
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "20px",
-      justifyContent: "center",
-    },
-    product: {
-      border: "1px solid #ddd",
-      padding: "10px",
-      textAlign: "center",
-      borderRadius: "8px",
-      width: "200px",
-      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-      transition: "transform 0.2s",
-    },
-    productHover: {
-      transform: "scale(1.05)",
-    },
-    img: {
-      width: "100%",
-      borderRadius: "5px",
-    },
-    title: {
-      fontSize: "16px",
-      fontWeight: "bold",
-      margin: "10px 0",
-    },
-    price: {
-      fontSize: "14px",
-      color: "#555",
-      marginBottom: "10px",
-    },
-    heart: {
-      cursor: "pointer",
-      fontSize: "20px",
-      marginTop: "10px",
-    },
+  const handleCardClick = (index) => {
+    const newFlipped = [...flipped];
+    newFlipped[index] = !newFlipped[index];
+    setFlipped(newFlipped);
   };
 
   return (
-    <section style={styles.section}>
-      <h2>Featured Products</h2>
-      <p>Echoes of Inspiration</p>
-      <div style={styles.container}>
-        {products.map((product, index) => (
-          <div
-            key={index}
-            style={{
-              ...styles.product,
-              ...(favorites[index] ? styles.productHover : {}),
-            }}
-          >
-            <img src={product.src} alt={product.title} style={styles.img} />
-            <div style={styles.des}>
-              <h5 style={styles.title}>{product.title}</h5>
-              <h4 style={styles.price}>{product.price}</h4>
-              {/* Heart Icon */}
+    <>
+      <style>{`
+        .featured-section {
+          padding: 20px;
+          text-align: center;
+        }
+       .featured-section h2,.featured-section p {
+           font-family: 'Arial', sans-serif;
+        }
+       .featured-section p {
+          font-style: italic;
+          margin-top: 10px;
+        }
+        .products-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+        }
+        .card {
+          perspective: 1000px;
+          width: 200px;
+          height: 250px;
+        }
+        .card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform-style: preserve-3d;
+          transition: transform 0.6s;
+        }
+        .card-flipped {
+          transform: rotateY(180deg); /* Flip the card */
+        }
+        .card-front,
+        .card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          border-radius: 12px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-front {
+          background: #fff;
+        }
+        .card-front img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 12px;
+        }
+        .card-back {
+          background: linear-gradient(135deg,rgb(195, 64, 232), #feb47b); /* Gradient background */
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transform: rotateY(180deg);
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+          padding: 10px;
+          border-radius: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-back h5 {
+          margin: 0;
+          font-size: 20px;
+          font-weight: 600;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+          font-family:times-new-roman;
+        }
+        .card-back p {
+          font-size: 14px;
+          font-weight: 600;
+          margin-top: 8px;
+          opacity: 0.9;
+          font-family:italic;
+        }
+        .tap-message {
+          font-size: 14px;
+          font-weight: bold;
+          color: #333;
+          margin: 15px 0;
+          text-align: center;
+          font-family: 'Arial', sans-serif;
+          background-color:rgb(249, 250, 233);
+          padding: 8px;
+          border-radius: 6px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          animation: fadeIn 1s ease-out;
+        }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+      `}</style>
+
+      <section className="featured-section">
+        <h2>Featured Products</h2>
+        <p>Echoes of Inspiration</p>
+        <p className="tap-message">Tap to flip and see details!</p>
+
+        <div className="products-container">
+          {products.map((product, index) => (
+            <div
+              key={index}
+              className="card"
+              onClick={() => handleCardClick(index)}
+            >
               <div
-                onClick={() => toggleFavorite(index)}
-                style={{
-                  ...styles.heart,
-                  color: favorites[index] ? "red" : "gray",
-                }}
+                className={`card-inner ${
+                  flipped[index] ? "card-flipped" : ""
+                }`}
               >
-                <i className={`fas fa-heart`}></i>
+                {/* Front side of the card */}
+                <div className="card-front">
+                  <img src={product.src} alt={product.title} />
+                </div>
+                {/* Back side of the card */}
+                <div className="card-back">
+                  <h5>{product.title}</h5>
+                  <p>{product.note}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

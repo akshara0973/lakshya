@@ -86,6 +86,7 @@ export default function Slide() {
               </div>
             </div>
           </div>
+          
         </div>
 
         <button
