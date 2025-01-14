@@ -3,19 +3,20 @@ import Header from '../Pages/Header'
 import About from '../Pages/About'
 import Navbar from '../Pages/Navbar'
 import Footer from '../Pages/Footer'
-import Service from '../Pages/Service'
-// import Activities from '../Pages/Activities'
+
 import Spinner from '../Pages/Spinner'
+import Gallery from '../Pages/Gallery'
 
 export default function About1() {
   return (
     <>
     <Spinner/>
     <Navbar/>
-    <Header name="About"/>
-    <About/>
-    <Service/>
+    <Header name="Gallery"/>
+    {/* <About/> */}
+    {/* <Service/> */}
     {/* <Activities/> */}
+    <Gallery/>
     <Footer/>
     </>
   )

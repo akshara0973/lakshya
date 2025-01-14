@@ -6,36 +6,37 @@ export default function Team() {
   const pages = [
     {
       title: "What Lakshya Offers?",
-      content: "Provides vocational training and life skills to help individuals lead independent and fulfilling lives. It focuses on building confidence, self-reliance, and practical skills essential for personal and professional growth. With an emphasis on skilled living.",
+      content: "Offers vocational training & life skills to build confidence, & practical skills for personal & professional growth.",
     },
     {
       title: "Handloom Projects",
 
-      content: "Celebrating the rich tradition of handcrafted textiles while creating sustainable livelihoods for artisans. By blending heritage with innovation and promote eco-friendly practices, weaving a brighter future for all.",
+      content: 
+      "Celebrates handcrafted textiles, blending heritage with innovation for sustainable, eco-friendly livelihoods.",
     },
     {
       title: "Computer Training",
-      content: "It equips individuals with essential digital skills, enabling them to thrive in today’s tech-driven world. It opens doors to learning, and career opportunities, fostering confidence and competence in the digital era.",
+      content: "Equips individuals with digital skills to thrive in a tech-driven world, fostering confidence,and career opportunities.",
     },
     {
       title: "Marketting",
-      content:"Through stalls offers a direct and engaging way to connect with customers. It creates a vibrant platform to showcase products, build brand awareness, and foster meaningful interactions, turning curiosity into lasting relationships.",
+      content:"Stalls provide a vibrant platform to showcase products, connect with customers, and build lasting relationships.",
     },
     {
       title:"NIOS",
-      content:"Schooling through NIOS provides a flexible and inclusive education system, catering to diverse learning needs. It empowers students to pursue education at their own pace, offering academic success and personal growth beyond conventional classrooms.",
+      content:"NIOS offers flexible education, empowering students to learn at their own pace and grow academically and personally.",
     },
     {
       title:"Sports",
-      content:"Sports inspire physical fitness, mental resilience, and teamwork. They foster discipline, determination, and a sense of community, shaping individuals into confident and well-rounded personalities while promoting a healthy and active lifestyle.",
+      content:"Sports foster fitness, resilience, confidence, and a healthy lifestyle.",
     },
     {
       title:"Adventure",
-      content:"It ignites the spirit of curiosity and courage, offering unforgettable experiences and personal growth. It pushes boundaries, and creates lasting memories, inspiring individuals to explore, discover, and live life to the fullest.",
+      content:"It sparks curiosity and courage, inspiring individuals to explore and live life fully.",
     },
     {
       title:"Crafting Pickles & Spices",
-      content:"Lakshya empowers individuals with disabilities by providing livelihood opportunities. Students even showcase their creativity by making products like pickles and masalas, fostering independence and confidence.",
+      content:"Empowers individuals by offering livelihood opportunities and fostering independence through products like pickles and masalas.",
     },
     {
       title:"And lot more..."

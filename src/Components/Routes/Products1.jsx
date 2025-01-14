@@ -4,7 +4,7 @@ import Header from '../Pages/Header'
 import Product from '../Pages/Product'
 import Footer from '../Pages/Footer'
 import Spinner from '../Pages/Spinner'
-import Activities from '../Pages/Activities'
+// import Activities from '../Pages/Activities'
 
 
 export default function Products1() {
@@ -14,7 +14,7 @@ export default function Products1() {
     <Navbar/>
     <Header name="Products"/>
     <Product/>
-    <Activities/>
+    {/* <Activities/> */}
     <Footer/>
     </>
   )
