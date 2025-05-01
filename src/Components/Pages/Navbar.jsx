@@ -53,35 +53,22 @@ export default function Navbar() {
               Products
             </NavLink>
 
-            <div className="nav-item dropdown">
-              <NavLink
-                to="/insights"
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Insights
-              </NavLink>
+            <NavLink
+              to="/activities"
+              className="nav-item nav-link"
+              activeClassName="active"
+            >
+              Insights
+            </NavLink>
 
-              <div className="dropdown-menu fade-down m-0">
-                <NavLink
-                  to="/activities"
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Our Activities
-                </NavLink>
-
-               
-                <NavLink
-                  to="/feedback"
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Feedback
-                </NavLink>
-
-              </div>
-            </div>
+            <NavLink
+              to="/gallery"
+              className="nav-item nav-link"
+              activeClassName="active"
+            >
+              Gallery
+            </NavLink>
+            
             <NavLink
               to="/contact"
               className="nav-item nav-link"
@@ -89,13 +76,15 @@ export default function Navbar() {
             >
               Contact
             </NavLink>
+
+            
           </div>
 
           {isLoading && <Spinner />}
 
           {isAuthenticated && (
             <NavLink
-              to="/profile"
+              
               className="nav-item nav-link"
               activeClassName="active"
             >
@@ -107,7 +96,7 @@ export default function Navbar() {
               className="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
              
             >
-              Log out
+            
             </button>
           ) : (
             <button

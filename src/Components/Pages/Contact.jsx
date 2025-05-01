@@ -1,186 +1,142 @@
-import React from "react";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+import React, { useState } from "react";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 
 export default function Contact() {
-  const [result, setResult] = React.useState("");
-
-  const onHCaptchaChange = (token) => {
-    setValue("h-captcha-response", token);
-  };
+  const [result, setResult] = useState("");
+  const [rating, setRating] = useState(0); // State for the rating
 
   const onSubmit = async (event) => {
     event.preventDefault();
     setResult("Sending....");
+
     const formData = new FormData(event.target);
 
-    formData.append("access_key", "b9fd69e0-c307-4f57-b90f-9c4106746fcb");
+    // Add access key and rating
+    formData.append("access_key", "95dbfcaf-b6bd-4310-bd8d-bbdf9f3e3c6e");
+    formData.append("rating", rating); // Add numeric rating to the form data
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
+    // Add star representation of the rating
+    const starRepresentation = "★".repeat(rating) + "☆".repeat(5 - rating);
+    formData.append("rating_stars", starRepresentation); // Add stars to form data
 
-    const data = await response.json();
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      const data = await response.json();
+
+      if (data.success) {
+        setResult("Form Submitted Successfully!");
+        event.target.reset(); // Reset the form after success
+        setRating(0); // Reset the rating
+      } else {
+        console.error("Error:", data);
+        setResult(data.message || "Form submission failed!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setResult("An error occurred. Please try again.");
     }
   };
 
   return (
-    <>
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 className="section-title bg-white text-center text-primary px-3">
-              Contact Us
-            </h6>
-            <h1 className="mb-5">Contact For Any Query</h1>
-          </div>
-          <div className="row g-4">
-            <div
-              className="col-lg-4 col-md-6 wow fadeInUp"
-              data-wow-delay="0.1s"
-            >
-              <h5>Get In Touch</h5>
-              <p className="mb-4">
-                The contact form is currently inactive. Please contact on phone,
-                mail or social-media.
-              </p>
-              <div className="d-flex align-items-center mb-3">
-                <div
-                  className="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                  style={{ width: "50px", height: "50px" }}
-                >
-                  <i className="fa fa-map-marker-alt text-white" />
-                </div>
-                <div className="ms-3">
-                  <h5 className="text-primary">Office</h5>
-                  <p className="mb-0">Rohini,Shahdara; NEW DELHI</p>
-                </div>
-              </div>
-              <div className="d-flex align-items-center mb-3">
-                <div
-                  className="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                  style={{ width: "50px", height: "50px" }}
-                >
-                  <i className="fa fa-phone-alt text-white" />
-                </div>
-                <div className="ms-3">
-                  <h5 className="text-primary">Mobile</h5>
-                  <p className="mb-0">+91 9582605211</p>
-                </div>
-              </div>
-              <div className="d-flex align-items-center">
-                <div
-                  className="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary"
-                  style={{ width: "50px", height: "50px" }}
-                >
-                  <i className="fa fa-envelope-open text-white" />
-                </div>
-                <div className="ms-3">
-                  <h5 className="text-primary">Email</h5>
-                  <p className="mb-0">lakshyafvtc@gmail.com</p>
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-lg-4 col-md-6 wow fadeInUp"
-              data-wow-delay="0.3s"
-            >
-             
-            </div>
-            <div
-              className="col-lg-4 col-md-12 wow fadeInUp"
-              data-wow-delay="0.5s"
-            >
-              <form onSubmit={onSubmit}>
-                <input type="hidden" name="from_name" value="eLearning" />
-
-                <div className="row g-3">
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        id="name"
-                        placeholder="Your Name"
-                        required
-                      />
-                      <label htmlFor="name">Your Name</label>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="Your Email"
-                        required
-                      />
-                      <label htmlFor="email">Your Email</label>
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-floating">
-                      <input
-                        type="number"
-                        className="form-control"
-                        id="phone"
-                        name="phone"
-                        placeholder="Mobile No"
-                        required
-                      />
-                      <label htmlFor="subject">Mobile No</label>
-                    </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-floating">
-                      <textarea
-                        className="form-control"
-                        placeholder="Leave a message here"
-                        id="message"
-                        name="message"
-                        style={{ height: "150px" }}
-                        defaultValue={""}
-                      />
-                      <label htmlFor="message">Message</label>
-                    </div>
-                  </div>
-                  <input
-                    type="hidden"
-                    name="subject"
-                    value="New Submission from contact page"
-                  ></input>
-                  <div className="col-8">
-                    <HCaptcha
-                      sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
-                      reCaptchaCompat={false}
-                      onVerify={onHCaptchaChange}
+    <div className="container-xxl py-5">
+      <div className="container">
+        <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+          <h6 className="section-title bg-white text-center text-primary px-3">
+            Contact Us
+          </h6>
+          <h1 className="mb-5">Contact For Any Query</h1>
+        </div>
+        <div className="row g-4">
+          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"></div>
+          <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+            <form onSubmit={onSubmit}>
+              <input type="hidden" name="from_name" value="Lakshya Foundation" />
+              <div className="row g-3">
+                <div className="col-md-6">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="name"
+                      id="name"
+                      placeholder="Your Name"
+                      required
                     />
-                  </div>
-                  <div className="col-12">
-                    <button
-                      className="btn btn-primary w-100 py-3"
-                      type="submit"
-                    >
-                      Send Message
-                    </button>
+                    <label htmlFor="name">Your Name</label>
                   </div>
                 </div>
-              </form>
-              <span>{result}</span>
-            </div>
+                <div className="col-md-6">
+                  <div className="form-floating">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                    />
+                    <label htmlFor="email">Your Email</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="phone"
+                      name="phone"
+                      placeholder="Mobile No"
+                      required
+                    />
+                    <label htmlFor="phone">Mobile No</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <textarea
+                      className="form-control"
+                      placeholder="Leave a message here"
+                      id="message"
+                      name="message"
+                      style={{ height: "150px" }}
+                    />
+                    <label htmlFor="message">Message</label>
+                  </div>
+                </div>
+
+                {/* Rating Section */}
+                <div className="col-12">
+                  <Typography component="legend">Rate Your Experience</Typography>
+                  <Rating
+                    name="user-rating"
+                    value={rating}
+                    onChange={(event, newValue) => {
+                      setRating(newValue); // Update rating state
+                    }}
+                  />
+                </div>
+
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="New Submission from contact page"
+                />
+                <div className="col-12">
+                  <button className="btn btn-primary w-100 py-3" type="submit">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+            <span>{result}</span>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

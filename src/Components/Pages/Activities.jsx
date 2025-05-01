@@ -6,16 +6,17 @@ export default function Team() {
   const pages = [
     {
       title: "What Lakshya Offers?",
-      content: "Offers vocational training and life skills to build confidence, self-reliance, and practical skills for personal and professional growth.",
+      content: "Offers vocational training & life skills to build confidence, & practical skills for personal & professional growth.",
     },
     {
       title: "Handloom Projects",
 
-      content: "Celebrates handcrafted textiles, creating sustainable livelihoods while blending heritage with innovation and eco-friendly practices.",
+      content: 
+      "Celebrates handcrafted textiles, blending heritage with innovation for sustainable, eco-friendly livelihoods.",
     },
     {
       title: "Computer Training",
-      content: "Equips individuals with digital skills to thrive in a tech-driven world, fostering confidence, learning, and career opportunities.",
+      content: "Equips individuals with digital skills to thrive in a tech-driven world, fostering confidence,and career opportunities.",
     },
     {
       title: "Marketting",
@@ -23,20 +24,19 @@ export default function Team() {
     },
     {
       title:"NIOS",
-      content:
-      "NIOS schooling offers flexible, education, empowering students to learn at their own pace and achieve academic and personal growth.",
+      content:"NIOS offers flexible education, empowering students to learn at their own pace and grow academically and personally.",
     },
     {
       title:"Sports",
-      content:"Sports promote physical fitness, mental resilience, shaping confident individuals and encouraging a healthy, active lifestyle.",
+      content:"Sports foster fitness, resilience, confidence, and a healthy lifestyle.",
     },
     {
       title:"Adventure",
-      content:"It sparks curiosity and courage, offering unforgettable experiences inspiring individuals to explore and live life to the fullest.",
+      content:"It sparks curiosity and courage, inspiring individuals to explore and live life fully.",
     },
     {
       title:"Crafting Pickles & Spices",
-      content:"Empowers individuals offering livelihood opportunities & fostering independence through creative products like pickles and masalas.",
+      content:"Empowers individuals by offering livelihood opportunities and fostering independence through products like pickles and masalas.",
     },
     {
       title:"And lot more..."
